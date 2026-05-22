@@ -253,6 +253,26 @@ configure_port() {
   echo -e "${GREEN}[OK] Sistema vai rodar na porta ${PORT}${NC}"
 }
 
+generate_secrets() {
+  ENV_FILE="${INSTALL_DIR}/.env"
+
+  if grep -q "^JWT_SECRET=" "$ENV_FILE" 2>/dev/null; then
+    echo -e "${YELLOW}[INFO] JWT_SECRET já existe no .env — mantendo${NC}"
+  else
+    JWT_SECRET=$(node -e "console.log(require('crypto').randomBytes(48).toString('hex'))")
+    echo "JWT_SECRET=${JWT_SECRET}" >> "$ENV_FILE"
+    echo -e "${GREEN}[OK] JWT_SECRET gerado automaticamente${NC}"
+  fi
+
+  if grep -q "^SESSION_SECRET=" "$ENV_FILE" 2>/dev/null; then
+    echo -e "${YELLOW}[INFO] SESSION_SECRET já existe no .env — mantendo${NC}"
+  else
+    SESSION_SECRET=$(node -e "console.log(require('crypto').randomBytes(48).toString('hex'))")
+    echo "SESSION_SECRET=${SESSION_SECRET}" >> "$ENV_FILE"
+    echo -e "${GREEN}[OK] SESSION_SECRET gerado automaticamente${NC}"
+  fi
+}
+
 install_files() {
   echo ""
   echo -e "${BLUE}--- Instalando arquivos (modo local) ---${NC}"
@@ -392,6 +412,7 @@ fi
 configure_license
 configure_database
 configure_port
+generate_secrets
 create_service
 start_service
 print_summary
