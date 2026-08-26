@@ -1,0 +1,14 @@
+{
+  "name": "geotrack-pro",
+  "version": "1.0.0",
+  "description": "GeoTrack Pro - Sistema de Rastreamento",
+  "type": "commonjs",
+  "scripts": {
+    "start": "NODE_ENV=production node dist/index.cjs"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "firebase-admin": "^13.6.1",
+    "socket.io": "^4.8.3"
+  }
+}
