@@ -12,16 +12,4 @@ Na tela de instalação, escolha **2 — GitHub**.
 
 ## Atualização automática
 
-Após instalar no modo GitHub:
-
-**Painel admin → Configurações → Geral → Atualização do Sistema → Verificar → Atualizar agora**
-
-O sistema reinicia automaticamente após a atualização.
-
-## Comandos úteis
-
-```bash
-systemctl status geotrack
-journalctl -u geotrack -f
-systemctl restart geotrack
-```
+No painel admin → Configurações → Geral → Atualização do Sistema → Verificar → Atualizar agora.
